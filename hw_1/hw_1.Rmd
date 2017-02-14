@@ -1,0 +1,6 @@
+---
+title: "Data Wrangling"
+author: "Nick Solomon"
+date: "February 13, 2017"
+output: github_document
+---
