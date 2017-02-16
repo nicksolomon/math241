@@ -85,9 +85,9 @@ length(problem_pairs)
 ``` r
 # filter dupes and join
 or_voter <- or_regi %>% 
-  filter(!duplicated(.$VOTER_ID)) %>% 
+  distinct(VOTER_ID, .keep_all = TRUE) %>% 
   left_join(
-    filter(or_movo, !duplicated(or_movo$VOTER_ID)),
+    distinct(or_movo, VOTER_ID, .keep_all = TRUE),
     by = "VOTER_ID", suffix = c("_REGI", "_MOVO"))
 
 # do I have as many rows as I wanted
