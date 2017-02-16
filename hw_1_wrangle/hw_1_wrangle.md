@@ -116,7 +116,7 @@ ggplot(or_voter, aes(PARTY_CODE)) +
   theme_minimal()
 ```
 
-![](hw_1_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](hw_1_wrangle_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
 We can see that the vast majority of voters in each party registered traditionally. The only party with an unusual number of Motor Voter registrants is the not actually a party at all, but the code for non-affiliated voters. This trend warrants further exploration.
 
@@ -155,7 +155,7 @@ ggplot(or_voter_county, aes(reorder(COUNTY_REGI, TOTAL_PROP), PROP_MOVO)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](hw_1_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](hw_1_wrangle_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
 Here we can see that across counties, most Motor Voter registrations are non-affiliated voters. Perhaps this is because the Motor Voter program is primarily registering voters with already low political involvement, so they are not likely to have a preference for any party. The next plot removes these voters (along with all the other minor parties) and allows to examine how Motor Voter effects the two major parties.
 
@@ -170,7 +170,7 @@ ggplot(filter(or_voter_county, PARTY_CODE %in% c("DEM", "REP")), aes(reorder(COU
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-![](hw_1_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](hw_1_wrangle_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 We can see that while there is no clear advantage for one party or the other, Republicans might be given a slight edge in registration. This might be due to higher efficacy of the program in areas where Republican support tends to be stronger, like rural counties.
 
@@ -195,7 +195,7 @@ ggplot(or_voter_year, aes(YEAR, CHANGE)) +
   theme_bw()
 ```
 
-![](hw_1_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](hw_1_wrangle_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 To answer this question, I made another plot. This plots the total number of registrants against the year. By comparing the raw, untransformed numbers, we can see that there was a spike in the number of Motor Voter registrants, but that there was also a large spike in the number of traditional registrations. Therefore, it is untrue that this jump was due solely to the Motor Voter program. As usual, it is more complicated than that. The large jump was probably due to a combination of factors, including automatic registration and a particularly contentious presidential election.
 
@@ -216,4 +216,4 @@ ggplot(or_voter_year2, aes(YEAR, TOTAL)) +
   theme_minimal()
 ```
 
-![](hw_1_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](hw_1_wrangle_files/figure-markdown_github/unnamed-chunk-5-1.png)
