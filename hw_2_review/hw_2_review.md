@@ -50,6 +50,41 @@ height_v_father
 Exercise 3.2
 ------------
 
+### 1
+
+``` r
+vol_vs_htemp <- ggplot(RailTrail, aes(volume, hightemp)) +
+  geom_point() +
+  labs(title = "Volume vs. high temperature",
+       x = "Volume (# of crossings)",
+       y = "High temperature (°F)") +
+  theme_bw()
+vol_vs_htemp
+```
+
+![](hw_2_review_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+### 2
+
+``` r
+labels <- c("1" = "Weekday", "0" = "Weekend")
+vol_vs_htemp <- vol_vs_htemp + 
+  facet_wrap(~weekday, labeller = labeller(weekday = labels))
+vol_vs_htemp
+```
+
+![](hw_2_review_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+### 3
+
+``` r
+vol_vs_htemp <- vol_vs_htemp + 
+  geom_smooth(method = "lm")
+vol_vs_htemp
+```
+
+![](hw_2_review_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
 Exercise 4.8
 ------------
 
