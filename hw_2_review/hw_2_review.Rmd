@@ -131,4 +131,14 @@ Teams %>%
 
 ## Exercise 4.11
 
+```{r}
+Teams %>% 
+  filter(teamID %in% c("CAL", "ANA", "LAA")) %>% 
+  arrange(desc(W)) %>% 
+  select(yearID, W, WSWin) %>% 
+  head(10) %>% 
+  knitr::kable(row.names = TRUE, col.name = c("Season", "Wins", "World series win?"))
 
+```
+
+The Angels won the World Series in 2002.

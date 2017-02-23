@@ -180,3 +180,27 @@ Teams %>%
 
 Exercise 4.11
 -------------
+
+``` r
+Teams %>% 
+  filter(teamID %in% c("CAL", "ANA", "LAA")) %>% 
+  arrange(desc(W)) %>% 
+  select(yearID, W, WSWin) %>% 
+  head(10) %>% 
+  knitr::kable(row.names = TRUE, col.name = c("Season", "Wins", "World series win?"))
+```
+
+|     |  Season|  Wins| World series win? |
+|-----|-------:|-----:|:------------------|
+| 1   |    2008|   100| N                 |
+| 2   |    2002|    99| Y                 |
+| 3   |    2014|    98| N                 |
+| 4   |    2009|    97| N                 |
+| 5   |    2005|    95| N                 |
+| 6   |    2007|    94| N                 |
+| 7   |    1982|    93| N                 |
+| 8   |    1986|    92| N                 |
+| 9   |    2004|    92| N                 |
+| 10  |    1989|    91| N                 |
+
+The Angels won the World Series in 2002.
