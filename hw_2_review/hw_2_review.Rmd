@@ -4,8 +4,45 @@ author: "Nick Solomon"
 date: "February 24, 2017"
 output: github_document
 ---
+```{r}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+```{r}
+library(tidyverse)
+library(mosaic)
+```
+
 
 ## Exercise 3.1
+
+### 1
+
+```{r}
+height_v_father <- ggplot(Galton, aes(height, father)) +
+  geom_point() +
+  labs(title = "Height vs. father's height", 
+       x = "Height (in)", 
+       y = "Father's height (in)") +
+  theme_bw()
+height_v_father
+```
+
+### 2
+
+```{r}
+height_v_father <- height_v_father + facet_wrap(~sex)
+height_v_father
+```
+
+### 3
+
+```{r}
+height_v_father <- height_v_father + geom_smooth(method = "lm")
+height_v_father
+```
+
 
 ## Exercise 3.2
 
