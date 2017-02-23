@@ -92,11 +92,29 @@ Exercise 4.8
 ``` r
 my_teams <- Teams %>% 
   mutate(BA = H/AB,
-         SLG = (H + X2B + 2*X3B + 4*HR)/AB)
+         SLG = (H + X2B + 2*X3B + 3*HR)/AB)
 ```
 
 Exercise 4.9
 ------------
+
+``` r
+labels <- c("AL" = "American League",
+            "NL" = "National League")
+my_teams %>% 
+  filter(yearID >= 1954) %>% 
+  ggplot(aes(yearID, SLG)) +
+    geom_line() +
+    facet_wrap(~lgID, labeller = labeller(lgID = labels)) +
+    labs(title = "Year vs Slugging percentage",
+         x = "Year",
+         y = "Slugging percentage")+
+    theme_bw()
+```
+
+![](hw_2_review_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+The slugging percentage seems to be higher in the National League. This could be because National League teams tend to play on smaller fields, and so they score more home runs.
 
 Exercise 4.10
 -------------
