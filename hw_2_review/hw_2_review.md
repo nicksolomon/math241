@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ``` r
 library(tidyverse)
 library(mosaic)
+library(Lahman)
 ```
 
 Exercise 3.1
@@ -87,6 +88,12 @@ vol_vs_htemp
 
 Exercise 4.8
 ------------
+
+``` r
+my_teams <- Teams %>% 
+  mutate(BA = H/AB,
+         SLG = (H + X2B + 2*X3B + 4*HR)/AB)
+```
 
 Exercise 4.9
 ------------
