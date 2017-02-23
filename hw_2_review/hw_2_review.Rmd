@@ -106,4 +106,29 @@ The slugging percentage seems to be higher in the National League. This could be
 
 ## Exercise 4.10
 
+### All time
+
+```{r}
+Teams %>% 
+  group_by(name) %>%
+  summarize(SLG = (sum(H) + sum(X2B) + 2*sum(X3B) + 3*sum(HR))/sum(AB)) %>%
+  arrange(desc(SLG)) %>% 
+  head(15) %>% 
+  knitr::kable(row.names = TRUE, col.name = c("Team", "Slugging percentage"))
+```
+
+### Since 1969
+
+```{r}
+Teams %>% 
+  filter(yearID >= 1969) %>% 
+  group_by(name) %>%
+  summarize(SLG = (sum(H) + sum(X2B) + 2*sum(X3B) + 3*sum(HR))/sum(AB)) %>%
+  arrange(desc(SLG)) %>% 
+  head(15) %>% 
+  knitr::kable(row.names = TRUE, col.name = c("Team", "Slugging percentage"))
+```
+
 ## Exercise 4.11
+
+
