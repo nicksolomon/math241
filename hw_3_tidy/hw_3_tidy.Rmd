@@ -1,0 +1,46 @@
+---
+title: "Tidying Oregon Voter Data"
+author: "Nick Solomon"
+date: "February 27, 2017"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+voter_bits <- list()
+
+for(i in 1:5){
+  filename <- paste("or_voter_history/CD", i, "_VoterHistory_Jan2017.txt", sep = "")
+  voter_bits[[i]] <- read_tsv(filename)
+}
+
+big_voter <- rbind(voter_bits[[1]],
+                   voter_bits[[2]],
+                   voter_bits[[3]],
+                   voter_bits[[4]],
+                   voter_bits[[5]])
+rm(voter_bits)
+```
+
+```{r}
+set.seed(120932)
+voter_sample <- sample_n(big_voter, 100000)
+#rm(big_voter)
+```
+
+```{r}
+voter_sample <- voter_sample %>% 
+  gather(DATE, VOTED, -(VOTER_ID:SPLIT))
+
+voter_sample <- voter_sample %>% 
+  mutate(VOTED = ifelse(VOTED == "-", NA, VOTED)) %>% 
+  filter(VOTED != "ACP")
+```
+
