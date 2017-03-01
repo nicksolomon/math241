@@ -1,24 +1,19 @@
----
-title: "Tidying Oregon Voter Data"
-author: "Nick Solomon"
-date: "February 27, 2017"
-output: github_document
----
+Tidying Oregon Voter Data
+================
+Nick Solomon
+February 27, 2017
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-```
-
-```{r}
+``` r
 library(tidyverse)
 library(Lahman)
 ```
 
-## Part 1
+Part 1
+------
 
 ### Exercise 5.1
 
-```{r}
+``` r
 cubs <- Teams %>% 
   filter(teamID == "CHN") %>% 
   select(yearID, HR, HRA) %>% 
@@ -28,9 +23,11 @@ ggplot(cubs, aes(yearID, num, col = run_type)) +
   geom_line()
 ```
 
+![](hw_3_tidy_files/figure-markdown_github/unnamed-chunk-2-1.png)
+
 ### Exercise 5.6
 
-```{r}
+``` r
 ds56 <- tribble(
   ~id, ~group, ~vals,
     1,    "T",    4.0,
@@ -47,18 +44,22 @@ all <- mutate(Treat, diff = Treat$vals - Control$vals)
 all$diff
 ```
 
+    ## [1] -1  0 -2
+
 Looks good! But if the data is not sorted correctly, then by computing the `diff` column this way, the data would be mismatched and the difference wouldn't be comparing across the same subject. If one of the observations were missing, then `Treat` and `Control` data frames would be differently sized and the `mutate()` call would result in an error.
 
-```{r}
+``` r
 ds56_2 <- ds56 %>% 
   spread(group, vals) %>% 
   mutate(diff = T - C)
 ds56_2$diff
 ```
 
+    ## [1] -1  0 -2
+
 ### Exercise 5.7
 
-```{r}
+``` r
 ds57 <- tribble(
   ~grp, ~sex, ~meanL, ~sdL, ~meanR, ~sdR,
    "A",  "F",    .22,  .11,    .34,  .08,
@@ -75,10 +76,15 @@ ds57_2 <- ds57 %>%
 knitr::kable(ds57_2, row.names = TRUE)
 ```
 
+|     | grp |  F.meanL|  F.meanR|  F.sdL|  F.sdR|  M.meanL|  M.meanR|  M.sdL|  M.sdR|
+|-----|:----|--------:|--------:|------:|------:|--------:|--------:|------:|------:|
+| 1   | A   |     0.22|     0.34|   0.11|   0.08|     0.47|     0.57|   0.33|   0.33|
+| 2   | B   |     0.33|     0.40|   0.11|   0.07|     0.55|     0.65|   0.31|   0.27|
 
-## Part2
+Part2
+-----
 
-```{r cache = TRUE}
+``` r
 voter_bits <- list()
 
 for(i in 1:5){
@@ -94,13 +100,13 @@ big_voter <- rbind(voter_bits[[1]],
 rm(voter_bits)
 ```
 
-```{r cache = TRUE}
+``` r
 set.seed(120932)
 voter_sample <- sample_n(big_voter, 100000)
 rm(big_voter)
 ```
 
-```{r cache = TRUE}
+``` r
 voter_sample <- voter_sample %>% 
   gather(DATE, VOTED, -(VOTER_ID:SPLIT))
 
@@ -108,4 +114,3 @@ voter_sample <- voter_sample %>%
   mutate(VOTED = ifelse(VOTED == "-", NA, VOTED)) %>% 
   filter(VOTED != "ACP")
 ```
-
