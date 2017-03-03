@@ -84,6 +84,8 @@ knitr::kable(ds57_2, row.names = TRUE)
 Part2
 -----
 
+### Import
+
 ``` r
 voter_bits <- list()
 
@@ -105,6 +107,9 @@ set.seed(120932)
 voter_sample <- sample_n(big_voter, 100000)
 rm(big_voter)
 ```
+
+Tidy
+----
 
 ``` r
 voter_sample <- voter_sample %>% 
