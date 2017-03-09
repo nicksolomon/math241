@@ -74,7 +74,7 @@ ggplot(science, aes(politicalscience)) +
 
 ## Campaign Finance
 
-For the campaign finance section of this problem set, I was interested in the network structure of the transactions between candidates and committees, so I downloaded the 2015-2016 file on transactions from one committee to another. I also downloaded the candidate and committee master files, so I could link FEC ID's to actual names. Once I had all the data read in, I subsetted it into only new transactions that were greater than $1,000,000. Finally, I made an `igraph` object where each vertex had as an attribute the name and party of the entity and each edge contained the value of the transaction.
+For the campaign finance section of this problem set, I was interested in the network structure of the transactions between candidates and committees, so I downloaded the 2015-2016 file on transactions from one committee to another from [here](http://www.fec.gov/finance/disclosure/ftpdet.shtml). I also downloaded the candidate and committee master files, so I could link FEC ID's to actual names. Once I had all the data read in, I subsetted it into only new transactions that were greater than $1,000,000. Finally, I made an `igraph` object where each vertex had as an attribute the name and party of the entity and each edge contained the value of the transaction.
 
 ```{r}
 fin_data <- read_delim("data/itoth.txt", "|", col_names = FALSE)
